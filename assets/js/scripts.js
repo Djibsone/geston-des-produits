@@ -4,6 +4,7 @@ $(document).ready(function() {
     let showUrl = './controllers/show.php';
     let designation = $("#designe_sortie");
     let qtSortie = $("#qt_sortie");
+    let qtStock = $('#qt_stock');
 
     //edit produit
     $(document).on('click', '.edit', function(e){
@@ -140,31 +141,29 @@ $(document).ready(function() {
         qtSortie.val(null);
 
         if (selectedDesignation) {
-
             $.ajax({
                 url: showUrl,
                 type: "post",
                 data: { id: selectedDesignation },
-                dataType:'json',
+                dataType: 'json',
                 success: function (data) {
-                    $('#qt_stock').val(data.stock_actuel);
-
-                    qtSortie.on('input', function () {
-                        let qt_sortie = $(this).val();
-                        let qt_stock = $('#qt_stock').val();
-
-                        if (qt_sortie > qt_stock) {
-                            // $('#qt_sortie').val(qt_stock);
-                            console.log(result);
-                        }
-                    });
+                    qtStock.val(data.stock_actuel);
                 },
                 error: function () {
-                    console.error("Erreur lors de la récupération des communes.");
+                    console.error("Erreur lors de la récupération des données.");
                 }
             });
         }
-        
+    });
+
+    // Attachez l'événement input en dehors de la fonction change
+    qtSortie.on('input', function () {
+        let qt_sortie = $(this).val();
+        let qt_stock = parseInt(qtStock.val());
+
+        if (qt_sortie > qt_stock) {
+            qtSortie.val(qt_stock);
+        }
     });
 
 });
