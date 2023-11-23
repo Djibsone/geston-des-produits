@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <title>INDEX</title>
+    <title>GESTION DU STOCK</title>
 </head>
 <body>
     <div class="container-fluid mt-4">

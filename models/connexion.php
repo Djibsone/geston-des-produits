@@ -110,18 +110,6 @@ function countNbre() {
     return $result['nbr_total'];
 }
 
-//Mouvement de l'infos
-function mouvement($designe, $mv_Qt){
-    $db = dbConnect();
-
-    $req = $db->prepare('CALL moveProduit(?,?)');
-
-    if($req->execute(array($designe, $mv_Qt)))
-        return true;
-    else
-        return false;
-}
-
 //Modifier l'infos
 function update($id, $designe){
     $db = dbConnect();

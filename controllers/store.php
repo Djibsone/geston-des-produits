@@ -44,15 +44,10 @@ if(isset($_POST['plus'])){
                 $designe = htmlspecialchars($_POST['designe']);
                 $quantite = htmlspecialchars($_POST['quantite']);
 
-                $check = getInfoById($designe);
-                $data = $check->fetch();
-                $mv_Qt = $data['stock_actuel'] + $quantite;
-
                 $stmt = addEntre($quantite, $designe);
 
                 if ($stmt) {
 
-                        mouvement($designe, $mv_Qt);
                         $msg= "Entrée effectuée avec succès.";
                         $url="../";		
                         header("location:../msg/message.php?msg=$msg&color=v&url=$url");
@@ -83,15 +78,10 @@ if(isset($_POST['minus'])){
                 $designe = htmlspecialchars($_POST['designe']);
                 $quantite = htmlspecialchars($_POST['quantite']);
 
-                $check = getInfoById($designe);
-                $data = $check->fetch();
-                $mv_Qt = $data['stock_actuel'] - $quantite;
-
                 $stmt = addSortie($quantite, $designe);
 
                 if ($stmt) {
 
-                        mouvement($designe, $mv_Qt);
                         $msg= "Sortie effectuée avec succès.";
                         $url="../";		
                         header("location:../msg/message.php?msg=$msg&color=v&url=$url");
